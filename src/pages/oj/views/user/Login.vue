@@ -86,7 +86,7 @@
             this.btnLoginLoading = false
             this.changeModalStatus({visible: false})
             this.getProfile()
-            this.$success(this.$i18n.t('m.Welcome_back'))
+            this.$success('온라인 저지에 오신 것을 환영합니다.')
           }, _ => {
             this.btnLoginLoading = false
           })
