@@ -28,10 +28,6 @@ export TARGET=http://Your-backend
 npm run dev
 ```
 
-## Screenshots
-
-[Check here.](https://github.com/QingdaoU/OnlineJudge)
-
 ## Browser Support
 
 Modern browsers and Internet Explorer 10+.
