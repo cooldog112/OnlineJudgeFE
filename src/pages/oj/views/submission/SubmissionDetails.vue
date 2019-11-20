@@ -2,16 +2,16 @@
   <Row type="flex" justify="space-around">
     <Col :span="20" id="status">
       <Alert :type="status.type" showIcon>
-        <span class="title">{{$t('m.' + status.statusName.replace(/ /g, "_"))}}</span>
+        <span class="title">{{status.statusName}}</span>
         <div slot="desc" class="content">
           <template v-if="isCE">
             <pre>{{submission.statistic_info.err_info}}</pre>
           </template>
           <template v-else>
-            <span>{{$t('m.Time')}}: {{submission.statistic_info.time_cost | submissionTime}}</span>
-            <span>{{$t('m.Memory')}}: {{submission.statistic_info.memory_cost | submissionMemory}}</span>
-            <span>{{$t('m.Lang')}}: {{submission.language}}</span>
-            <span>{{$t('m.Author')}}: {{submission.username}}</span>
+            <span>Time: {{submission.statistic_info.time_cost | submissionTime}}</span>
+            <span>Memory: {{submission.statistic_info.memory_cost | submissionMemory}}</span>
+            <span>Lang: {{submission.language}}</span>
+            <span>Author: {{submission.username}}</span>
           </template>
         </div>
       </Alert>
@@ -29,16 +29,15 @@
       <div id="share-btn">
         <Button v-if="submission.shared"
                 type="warning" size="large" @click="shareSubmission(false)">
-          {{$t('m.UnShare')}}
+          UnShare
         </Button>
         <Button v-else
                 type="primary" size="large" @click="shareSubmission(true)">
-          {{$t('m.Share')}}
+          Share
         </Button>
       </div>
     </Col>
   </Row>
-
 </template>
 
 <script>
@@ -46,7 +45,57 @@
   import {JUDGE_STATUS} from '@/utils/constants'
   import utils from '@/utils/utils'
   import Highlight from '@/pages/oj/components/Highlight'
-
+  const baseColumn = [
+    {
+      title: '번호',
+      align: 'center',
+      type: 'index'
+    },
+    {
+      title: '상태',
+      align: 'center',
+      render: (h, params) => {
+        return h('Tag', {
+          props: {
+            color: JUDGE_STATUS[params.row.result].color
+          }
+        }, JUDGE_STATUS[params.row.result].name)
+      }
+    },
+    {
+      title: '메모리',
+      align: 'center',
+      render: (h, params) => {
+        return h('span', utils.submissionMemoryFormat(params.row.memory))
+      }
+    },
+    {
+      title: '시간',
+      align: 'center',
+      render: (h, params) => {
+        return h('span', utils.submissionTimeFormat(params.row.cpu_time))
+      }
+    }
+  ]
+  const scoreColumn = [{
+    title: '점수',
+    align: 'center',
+    key: 'score'
+  }]
+  const adminColumn = [
+    {
+      title: '실시간',
+      align: 'center',
+      render: (h, params) => {
+        return h('span', utils.submissionTimeFormat(params.row.real_time))
+      }
+    },
+    {
+      title: '신호',
+      align: 'center',
+      key: 'signal'
+    }
+  ]
   export default {
     name: 'submissionDetails',
     components: {
@@ -54,38 +103,7 @@
     },
     data () {
       return {
-        columns: [
-          {
-            title: this.$i18n.t('m.ID'),
-            align: 'center',
-            type: 'index'
-          },
-          {
-            title: this.$i18n.t('m.Status'),
-            align: 'center',
-            render: (h, params) => {
-              return h('Tag', {
-                props: {
-                  color: JUDGE_STATUS[params.row.result].color
-                }
-              }, this.$i18n.t('m.' + JUDGE_STATUS[params.row.result].name.replace(/ /g, '_')))
-            }
-          },
-          {
-            title: this.$i18n.t('m.Memory'),
-            align: 'center',
-            render: (h, params) => {
-              return h('span', utils.submissionMemoryFormat(params.row.memory))
-            }
-          },
-          {
-            title: this.$i18n.t('m.Time'),
-            align: 'center',
-            render: (h, params) => {
-              return h('span', utils.submissionTimeFormat(params.row.cpu_time))
-            }
-          }
-        ],
+        columns: [],
         submission: {
           result: '0',
           code: '',
@@ -110,36 +128,18 @@
         api.getSubmission(this.$route.params.id).then(res => {
           this.loading = false
           let data = res.data.data
+          let columns = baseColumn
           if (data.info && data.info.data && !this.isConcat) {
             // score exist means the submission is OI problem submission
-            if (data.info.data[0].score !== undefined) {
+            if (data.info.data[0].score) {
               this.isConcat = true
-              const scoreColumn = {
-                title: this.$i18n.t('m.Score'),
-                align: 'center',
-                key: 'score'
-              }
-              this.columns.push(scoreColumn)
-              this.loadingTable = false
+              columns = columns.concat(scoreColumn)
             }
             if (this.isAdminRole) {
               this.isConcat = true
-              const adminColumn = [
-                {
-                  title: this.$i18n.t('m.Real_Time'),
-                  align: 'center',
-                  render: (h, params) => {
-                    return h('span', utils.submissionTimeFormat(params.row.real_time))
-                  }
-                },
-                {
-                  title: this.$i18n.t('m.Singal'),
-                  align: 'center',
-                  key: 'signal'
-                }
-              ]
-              this.columns = this.columns.concat(adminColumn)
+              columns = columns.concat(adminColumn)
             }
+            this.columns = columns
           }
           this.submission = data
         }, () => {
@@ -150,7 +150,7 @@
         let data = {id: this.submission.id, shared: shared}
         api.updateSubmission(data).then(res => {
           this.getSubmission()
-          this.$success(this.$i18n.t('m.Succeeded'))
+          this.$success('Succeeded')
         }, () => {
         })
       }
@@ -191,7 +191,6 @@
       }
     }
   }
-
   .admin-info {
     margin: 5px 0;
     &-content {
@@ -199,13 +198,11 @@
       padding: 10px;
     }
   }
-
   #share-btn {
     float: right;
     margin-top: 5px;
     margin-right: 10px;
   }
-
   pre {
     border: none;
     background: none;
