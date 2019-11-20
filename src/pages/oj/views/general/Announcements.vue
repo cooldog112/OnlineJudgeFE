@@ -19,7 +19,7 @@
               <div class="title"><a class="entry" @click="goAnnouncement(announcement)">
                 {{announcement.title}}</a></div>
               <div class="date">{{announcement.create_time | localtime }}</div>
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
+              <div class="creator"> By {{announcement.created_by.username}}</div>
             </div>
           </li>
         </ul>
@@ -41,7 +41,6 @@
 <script>
   import api from '@oj/api'
   import Pagination from '@oj/components/Pagination'
-
   export default {
     name: 'Announcement',
     components: {
@@ -103,7 +102,7 @@
     computed: {
       title () {
         if (this.listVisible) {
-          return this.isContest ? this.$i18n.t('m.Contest_Announcements') : this.$i18n.t('m.Announcements')
+          return this.isContest ? '대회 공지사항' : '공지사항'
         } else {
           return this.announcement.title
         }
@@ -155,16 +154,13 @@
       }
     }
   }
-
   .content-container {
     padding: 0 20px 20px 20px;
   }
-
   .no-announcement {
     text-align: center;
     font-size: 16px;
   }changeLocale
-
   .announcement-animate-enter-active {
     animation: fadeIn 1s;
   }
