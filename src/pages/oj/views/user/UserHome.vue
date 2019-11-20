@@ -33,8 +33,8 @@
             <Poptip v-if="refreshVisible" trigger="hover" placement="right-start">
               <Icon type="ios-help-outline"></Icon>
               <div slot="content">
-                <p>If you find the following problem id does not exist,<br> try to click the button.</p>
-                <Button type="info" @click="freshProblemDisplayID">regenerate</Button>
+                <p>존재하지 않는 문제 번호입니다. <br> 버튼을 눌러주세요.</p>
+                <Button type="info" @click="freshProblemDisplayID">재생성</Button>
               </div>
             </Poptip>
           </div>
