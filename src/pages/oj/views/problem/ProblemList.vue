@@ -2,26 +2,26 @@
   <Row type="flex" :gutter="18">
     <Col :span=19>
     <Panel shadow>
-      <div slot="title">{{$t('m.Problem_List')}}</div>
+      <div slot="title">문제 목록</div>
       <div slot="extra">
         <ul class="filter">
           <li>
             <Dropdown @on-click="filterByDifficulty">
-              <span>{{query.difficulty === '' ? this.$i18n.t('m.Difficulty') : this.$i18n.t('m.' + query.difficulty)}}
+              <span>{{query.difficulty === '' ? '난이도' : query.difficulty}}
                 <Icon type="arrow-down-b"></Icon>
               </span>
               <Dropdown-menu slot="list">
-                <Dropdown-item name="">{{$t('m.All')}}</Dropdown-item>
-                <Dropdown-item name="Low">{{$t('m.Low')}}</Dropdown-item>
-                <Dropdown-item name="Mid" >{{$t('m.Mid')}}</Dropdown-item>
-                <Dropdown-item name="High">{{$t('m.High')}}</Dropdown-item>
+                <Dropdown-item name="">전체</Dropdown-item>
+                <Dropdown-item name="Low">Low</Dropdown-item>
+                <Dropdown-item name="Mid">Mid</Dropdown-item>
+                <Dropdown-item name="High">High</Dropdown-item>
               </Dropdown-menu>
             </Dropdown>
           </li>
           <li>
             <i-switch size="large" @on-change="handleTagsVisible">
-              <span slot="open">{{$t('m.Tags')}}</span>
-              <span slot="close">{{$t('m.Tags')}}</span>
+              <span slot="open">태그</span>
+              <span slot="close">태그</span>
             </i-switch>
           </li>
           <li>
@@ -34,7 +34,7 @@
           <li>
             <Button type="info" @click="onReset">
               <Icon type="refresh"></Icon>
-              {{$t('m.Reset')}}
+              새로고침
             </Button>
           </li>
         </ul>
@@ -51,7 +51,7 @@
 
     <Col :span="5">
     <Panel :padding="10">
-      <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
+      <div slot="title" class="taglist-title">태그</div>
       <Button v-for="tag in tagList"
               :key="tag.name"
               @click="filterByTag(tag.name)"
@@ -63,7 +63,7 @@
 
       <Button long id="pick-one" @click="pickone">
         <Icon type="shuffle"></Icon>
-        {{$t('m.Pick_One')}}
+        랜덤 문제
       </Button>
     </Panel>
     <Spin v-if="loadings.tag" fix size="large"></Spin>
@@ -77,7 +77,6 @@
   import utils from '@/utils/utils'
   import { ProblemMixin } from '@oj/components/mixins'
   import Pagination from '@oj/components/Pagination'
-
   export default {
     name: 'ProblemList',
     mixins: [ProblemMixin],
@@ -110,7 +109,7 @@
             }
           },
           {
-            title: this.$i18n.t('m.Title'),
+            title: 'Title',
             width: 400,
             render: (h, params) => {
               return h('Button', {
@@ -133,7 +132,7 @@
             }
           },
           {
-            title: this.$i18n.t('m.Level'),
+            title: 'Level',
             render: (h, params) => {
               let t = params.row.difficulty
               let color = 'blue'
@@ -143,15 +142,15 @@
                 props: {
                   color: color
                 }
-              }, this.$i18n.t('m.' + params.row.difficulty))
+              }, params.row.difficulty)
             }
           },
           {
-            title: this.$i18n.t('m.Total'),
+            title: 'Total',
             key: 'submission_number'
           },
           {
-            title: this.$i18n.t('m.AC_Rate'),
+            title: 'AC Rate',
             render: (h, params) => {
               return h('span', this.getACRate(params.row.accepted_number, params.row.submission_number))
             }
@@ -238,7 +237,7 @@
         if (value) {
           this.problemTableColumns.push(
             {
-              title: this.$i18n.t('m.Tags'),
+              title: 'Tags',
               align: 'center',
               render: (h, params) => {
                 let tags = []
@@ -289,12 +288,10 @@
     margin-left: -10px;
     margin-bottom: -10px;
   }
-
   .tag-btn {
     margin-right: 5px;
     margin-bottom: 10px;
   }
-
   #pick-one {
     margin-top: 10px;
   }
