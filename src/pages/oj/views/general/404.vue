@@ -3,10 +3,10 @@
     <div class="error404-body-con">
       <Card>
         <div class="error404-body-con-title">4<span><Icon type="ios-navigate-outline"></Icon></span>4</div>
-        <p class="error404-body-con-message">YOU&nbsp;&nbsp;LOOK&nbsp;&nbsp;LOST</p>
+        <p class="error404-body-con-message">페이지를&nbsp;&nbsp;찾을 수&nbsp;&nbsp;없습니다.</p>
         <div class="error404-btn-con">
-          <Button @click="goHome" size="large" style="width: 200px;" type="ghost">{{$t('m.Go_Home')}}</Button>
-          <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">{{$t('m.Back')}}</Button>
+          <Button @click="goHome" size="large" style="width: 200px;" type="ghost">홈으로 돌아가기</Button>
+          <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">Back</Button>
         </div>
       </Card>
     </div>
@@ -50,7 +50,6 @@
       transform: rotateZ(0deg);
     }
   }
-
   .error404 {
     &-body-con {
       width: 700px;
