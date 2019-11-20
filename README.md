@@ -1,4 +1,4 @@
-# OnlineJudge Front End
+# 대구 온라인저지 연구회
 [![vue](https://img.shields.io/badge/vue-2.5.13-blue.svg?style=flat-square)](https://github.com/vuejs/vue)
 [![vuex](https://img.shields.io/badge/vuex-3.0.1-blue.svg?style=flat-square)](https://vuex.vuejs.org/)
 [![echarts](https://img.shields.io/badge/echarts-3.8.3-blue.svg?style=flat-square)](https://github.com/ecomfe/echarts)
@@ -8,13 +8,9 @@
 
 >### A multiple pages app built for OnlineJudge. [Demo](https://qduoj.com)
 
-## Features
+## 개발자
+팀원 : 마호돌, 박주희, 신희송, 정동환
 
-+ Webpack3 multiple pages with bundle size optimization
-+ Easy use simditor & Nice codemirror editor
-+ Amazing charting and visualization(echarts)
-+ User-friendly operation
-+ Quite beautiful：)
 
 ## Get Started
 
