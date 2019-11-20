@@ -6,7 +6,6 @@
 [![element-ui](https://img.shields.io/badge/element-2.0.9-blue.svg?style=flat-square)](https://github.com/ElemeFE/element)
 [![Build Status](https://travis-ci.org/QingdaoU/OnlineJudgeFE.svg?branch=master)](https://travis-ci.org/QingdaoU/OnlineJudgeFE)
 
->### A multiple pages app built for OnlineJudge. [Demo](https://qduoj.com)
 
 ## 개발자
 팀원 : 마호돌, 박주희, 신희송, 정동환
