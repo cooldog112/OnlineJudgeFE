@@ -1,8 +1,8 @@
-# 대구 온라인저지 연구회 (VER 0.1)
+# 대구 온라인저지 프론트 (VER 0.1)
 
 ## 개발자
 
-+ 팀원 : 마호돌, 박주희, 신희송, 정동환
++ 마호돌, 박주희
 
 ## 특징
 
@@ -47,7 +47,7 @@ npm run dev
 
 ## 참고자료
 
-+ youtube영상 : 나만의 알고리즘 채점 사이트 만들기 (https://www.youtube.com/watch?v=hYr8ZHv40Nk&list=PLRx0vPvlEmdCSBgU29ZEmxqTr4ge-MoN_&index=1)
++ 나동빈 youtube영상 : 나만의 알고리즘 채점 사이트 만들기 (https://www.youtube.com/watch?v=hYr8ZHv40Nk&list=PLRx0vPvlEmdCSBgU29ZEmxqTr4ge-MoN_&index=1)
 
 
 ## 오픈소스 라이센스
