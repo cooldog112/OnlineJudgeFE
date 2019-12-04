@@ -37,7 +37,6 @@ export const m = {
   Admin_Helper: 'Admin Helper',
   // ContestProblemList
   Problems_List: '문제 목록',
-
   // NavBar.vue
   Home: '홈',
   NavProblems: '문제',
