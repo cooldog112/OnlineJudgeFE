@@ -16,24 +16,24 @@
         @row-dblclick="handleDblclick"
         style="width: 100%">
         <el-table-column
-          width="100"
+          width="50"
           prop="id"
           label="ID">
         </el-table-column>
         <el-table-column
-          width="150"
+          width="90"
           label="Display ID">
           <template slot-scope="{row}">
             <span v-show="!row.isEditing">{{row._id}}</span>
             <el-input v-show="row.isEditing" v-model="row._id"
                       @keyup.enter.native="handleInlineEdit(row)">
-
             </el-input>
           </template>
         </el-table-column>
         <el-table-column
           prop="title"
-          label="Title">
+          width="300"               
+          label="제목">
           <template slot-scope="{row}">
             <span v-show="!row.isEditing">{{row.title}}</span>
             <el-input v-show="row.isEditing" v-model="row.title"
@@ -43,20 +43,21 @@
         </el-table-column>
         <el-table-column
           prop="created_by.username"
-          label="Author">
+          width="100"               
+          label="제작자">
         </el-table-column>
         <el-table-column
-          width="200"
+          width="150"
           prop="create_time"
-          label="Create Time">
+          label="제작일시">
           <template slot-scope="scope">
-            {{scope.row.create_time | localtime }}
+          <!--  {{scope.row.create_time | localtime }}-->
           </template>
         </el-table-column>
         <el-table-column
-          width="100"
+          width="80"
           prop="visible"
-          label="Visible">
+          label="보임/숨김">
           <template slot-scope="scope">
             <el-switch v-model="scope.row.visible"
                        active-text=""
@@ -67,8 +68,8 @@
         </el-table-column>
         <el-table-column
           fixed="right"
-          label="Operation"
-          width="250">
+          label="설정"
+          width="200">
           <div slot-scope="scope">
             <icon-btn name="Edit" icon="edit" @click.native="goEdit(scope.row.id)"></icon-btn>
             <icon-btn v-if="contestId" name="Make Public" icon="clone"

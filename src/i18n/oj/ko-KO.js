@@ -100,5 +100,9 @@ export const m = {
   UserHomeserSubmissions: '제출',
   UserHomeScore: '점수',
   List_Solved_Problems: '푼 문제들',
-  UserHomeIntro: '아직 어떠한 문제도 풀지 않았습니다.'
+  UserHomeIntro: '아직 어떠한 문제도 풀지 않았습니다.',
+    // ACMRank.vue
+  ACM_Ranklist: 'ACM 랭킹',
+    // OIMRank.vue
+  OI_Ranklist: 'OI 랭킹'
 }
