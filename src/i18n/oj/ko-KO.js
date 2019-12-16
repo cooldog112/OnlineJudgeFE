@@ -103,6 +103,5 @@ export const m = {
   UserHomeIntro: '아직 어떠한 문제도 풀지 않았습니다.',
     // ACMRank.vue
   ACM_Ranklist: 'ACM 랭킹',
-    // OIMRank.vue
-  OI_Ranklist: 'OI 랭킹'
+  Total: '총 점수'
 }

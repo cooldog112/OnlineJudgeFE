@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-      <div class="logo"><span>{{website.website_name}}</span></div>
+      <div class="logo"><img src='./logo.png' alt='dge' width='60' height='60'><!--<span>{{website.website_name}}</span>--></div>  
       <Menu-item name="/">
         <Icon type="home"></Icon>
         {{$t('m.Home')}}
@@ -18,8 +18,8 @@
         <Icon type="ios-pulse-strong"></Icon>
         {{$t('m.NavStatus')}}
       </Menu-item>
-      <Submenu name="rank">
-        <template slot="title">
+       <Submenu name="rank">
+       <template slot="title">
           <Icon type="podium"></Icon>
           {{$t('m.Rank')}}
         </template>
@@ -28,7 +28,7 @@
         </Menu-item>
         <Menu-item name="/oi-rank">
           {{$t('m.OI_Rank')}}
-        </Menu-item>
+        </Menu-item> 
       </Submenu>
       <Submenu name="about">
         <template slot="title">

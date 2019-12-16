@@ -32,7 +32,7 @@
         </el-table-column>
         <el-table-column
           prop="title"
-          width="300"               
+          width="280"               
           label="제목">
           <template slot-scope="{row}">
             <span v-show="!row.isEditing">{{row.title}}</span>
@@ -51,7 +51,7 @@
           prop="create_time"
           label="제작일시">
           <template slot-scope="scope">
-          <!--  {{scope.row.create_time | localtime }}-->
+            {{scope.row.create_time | localtime }}
           </template>
         </el-table-column>
         <el-table-column
