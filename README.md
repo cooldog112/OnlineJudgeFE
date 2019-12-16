@@ -1,4 +1,4 @@
-# 대구 온라인저지 Front-End (VER 0.1)
+# 대구 온라인저지 Front-End (VER 1.0)
 
 ## 개발자
 
